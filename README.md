@@ -193,6 +193,13 @@ Projeto de classificação binária para previsão de inadimplência em crédito
 - pasta: [`credit-risk-scoring`](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Machine-Learning/credit-risk-scoring)
 - foco: `credit risk`, classificação tabular, avaliação com `F1-score`, `ROC-AUC` e `PR-AUC`
 
+### `customer-segmentation-knn`
+
+Projeto baseado em `KNN` para encontrar clientes mais parecidos a partir de perfis tabulares normalizados, com foco em similaridade, CRM e segmentação assistida por vizinhança.
+
+- pasta: [`customer-segmentation-knn`](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Machine-Learning/customer-segmentation-knn)
+- foco: `KNN`, recuperação de perfis semelhantes, segmentação comportamental e marketing orientado por similaridade
+
 Cada projeto idealmente terá:
 
 - `README` próprio;
@@ -416,6 +423,13 @@ Binary classification project for credit default prediction using tabular data, 
 
 - folder: [`credit-risk-scoring`](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Machine-Learning/credit-risk-scoring)
 - focus: `credit risk`, tabular classification, evaluation with `F1-score`, `ROC-AUC`, and `PR-AUC`
+
+### `customer-segmentation-knn`
+
+`KNN`-based project to retrieve similar customers from normalized tabular profiles, focused on similarity search, CRM, and neighborhood-driven segmentation.
+
+- folder: [`customer-segmentation-knn`](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Machine-Learning/customer-segmentation-knn)
+- focus: `KNN`, similar-profile retrieval, behavioral segmentation, and similarity-driven marketing
 
 Each project should ideally include:
 

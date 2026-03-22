@@ -22,6 +22,13 @@ Leitura prática:
 - a performance alta é coerente com a natureza sintética da base;
 - o case é ótimo para explicar pipeline tabular, `Random Forest` e `feature importance`, mas não deve ser interpretado como benchmark de produção real sem validação adicional.
 
+Detalhamento adicional:
+
+- `Precision` da classe positiva: `0.9267`
+- `Recall` da classe positiva: `1.0000`
+- o modelo praticamente não deixa passar casos positivos no split atual;
+- o custo dessa sensibilidade alta precisa sempre ser balanceado com validação adicional quando o contexto for real.
+
 Resumo visual dos resultados:
 
 ![Results summary](./assets/results_summary.png)
@@ -58,6 +65,12 @@ A intuição é simples:
 - a floresta agrega essas previsões;
 - o conjunto tende a ser mais robusto, menos instável e menos sujeito a overfitting do que uma árvore isolada.
 
+Observação importante:
+
+- este projeto é um case de `classificação`, não de `regressão linear`;
+- o objetivo é classificar transações em `risk_score = 0` ou `risk_score = 1`;
+- por isso, o algoritmo adequado aqui é `RandomForestClassifier`.
+
 ## Matemática e intuição por trás do modelo
 
 O Random Forest usa dois mecanismos centrais:
@@ -79,6 +92,32 @@ Onde:
 - `n` é o número total de árvores.
 
 No caso de probabilidades, a saída pode ser a média das probabilidades previstas pelas árvores.
+
+### Critério de divisão das árvores
+
+Cada árvore precisa decidir qual variável usar para separar os exemplos em cada nó.
+
+Um critério comum para isso é a redução de impureza, por exemplo via `Gini impurity`:
+
+```text
+Gini = 1 - \sum_k p_k^2
+```
+
+Onde `p_k` é a proporção da classe `k` no nó.
+
+A árvore busca divisões que reduzam essa impureza, criando grupos mais homogêneos em termos de risco.
+
+### Como a feature importance é calculada
+
+Neste projeto, a importância das variáveis vem do próprio `Random Forest` do `scikit-learn`, com base em `mean decrease in impurity`.
+
+A intuição é:
+
+- se uma feature aparece frequentemente em divisões relevantes;
+- e se essas divisões reduzem bastante a impureza dos nós;
+- então essa feature recebe maior importância global.
+
+Isso ajuda a responder quais sinais mais influenciam a decisão do modelo ao longo de toda a floresta.
 
 ## Por que Random Forest neste case
 
@@ -124,6 +163,8 @@ Features derivadas:
 - classificação supervisionada com `RandomForestClassifier`
 - análise de importância das features
 - export de artefatos para inspeção
+- avaliação em base desbalanceada com métricas mais robustas que `accuracy`
+- ranking global de sinais de auditoria via `feature importance`
 
 ## Bibliotecas e ferramentas usadas
 
@@ -139,8 +180,25 @@ Features derivadas:
   Para salvar o pipeline treinado.
 - `unittest`
   Para teste automatizado.
+- `curl`
+  Pode ser usado para baixar ou atualizar datasets públicos em fluxos reproduzíveis.
 - `Git / GitHub`
   Para versionamento e apresentação do projeto.
+
+## Pipeline técnico
+
+Fluxo do projeto:
+
+1. leitura da base pública em `Parquet`;
+2. parsing da coluna `timestamp`;
+3. criação de features temporais derivadas;
+4. separação entre variáveis numéricas e categóricas;
+5. imputação de faltantes;
+6. codificação categórica com `OneHotEncoder`;
+7. treino do `RandomForestClassifier`;
+8. cálculo de probabilidades e predições binárias;
+9. avaliação com `F1-score`, `ROC-AUC` e `PR-AUC`;
+10. export de modelo, métricas, previsões e importância das variáveis.
 
 ## Métricas avaliadas
 
@@ -153,6 +211,13 @@ Como a base é desbalanceada, o projeto prioriza:
 - `recall` da classe positiva
 
 Essas métricas são mais úteis do que `accuracy` em cenários de fraude e auditoria, onde a classe positiva é minoritária.
+
+Leitura dos resultados atuais:
+
+- `F1-score = 0.9620` indica bom equilíbrio entre precisão e recall;
+- `ROC-AUC = 0.9996` mostra excelente separação entre classes neste dataset;
+- `PR-AUC = 0.9967` reforça que o desempenho continua muito forte mesmo olhando para a classe minoritária;
+- como a base é sintética, esses números devem ser interpretados como desempenho em ambiente de demonstração controlado.
 
 ## Visualização e interpretação
 
@@ -236,6 +301,13 @@ Practical reading:
 - the high performance is consistent with the synthetic nature of the data;
 - the case is excellent for explaining tabular pipelines, `Random Forest`, and `feature importance`, but it should not be treated as a production benchmark without additional validation.
 
+Additional details:
+
+- positive-class `Precision`: `0.9267`
+- positive-class `Recall`: `1.0000`
+- the model misses almost no positive cases in the current split;
+- that level of sensitivity must still be balanced with additional validation in a real environment.
+
 Visual summary of the results:
 
 ![Results summary](./assets/results_summary.png)
@@ -272,6 +344,12 @@ The core intuition is:
 - the forest aggregates those predictions;
 - the ensemble becomes more robust, less unstable, and less prone to overfitting than a single tree.
 
+Important note:
+
+- this is a `classification` case, not a `linear regression` problem;
+- the goal is to classify transactions into `risk_score = 0` or `risk_score = 1`;
+- that is why `RandomForestClassifier` is the appropriate model here.
+
 ## Math and modeling intuition
 
 Random Forest relies on two main mechanisms:
@@ -293,6 +371,32 @@ Where:
 - `n` is the total number of trees.
 
 For probabilities, the model can average probabilities across trees.
+
+### Tree split criterion
+
+Each tree must decide which variable to use to split the data at each node.
+
+A common criterion is impurity reduction, for example through `Gini impurity`:
+
+```text
+Gini = 1 - \sum_k p_k^2
+```
+
+Where `p_k` is the proportion of class `k` inside the node.
+
+The tree searches for splits that reduce that impurity and produce more homogeneous risk groups.
+
+### How feature importance is computed
+
+In this project, feature importance comes from the `scikit-learn` implementation of `Random Forest`, based on `mean decrease in impurity`.
+
+The intuition is:
+
+- if a feature appears often in relevant splits;
+- and if those splits strongly reduce node impurity;
+- then that feature receives higher global importance.
+
+This helps explain which signals most influence the model across the whole forest.
 
 ## Why Random Forest for this case
 
@@ -338,6 +442,8 @@ Derived features:
 - supervised classification with `RandomForestClassifier`
 - feature importance analysis
 - artifact export for inspection
+- imbalance-aware evaluation instead of relying on plain `accuracy`
+- global ranking of audit signals through feature importance
 
 ## Libraries and tools used
 
@@ -353,8 +459,25 @@ Derived features:
   For saving the trained pipeline.
 - `unittest`
   For automated testing.
+- `curl`
+  Can be used to fetch or refresh public datasets in reproducible workflows.
 - `Git / GitHub`
   For versioning and project presentation.
+
+## Technical pipeline
+
+Project flow:
+
+1. read the public dataset in `Parquet` format;
+2. parse the `timestamp` column;
+3. create derived temporal features;
+4. separate numerical and categorical variables;
+5. impute missing values;
+6. encode categories with `OneHotEncoder`;
+7. train the `RandomForestClassifier`;
+8. compute probabilities and binary predictions;
+9. evaluate with `F1-score`, `ROC-AUC`, and `PR-AUC`;
+10. export the model, metrics, predictions, and feature importance artifacts.
 
 ## Evaluation metrics
 
@@ -367,6 +490,13 @@ Because the dataset is imbalanced, the project prioritizes:
 - positive-class `recall`
 
 These are more informative than plain `accuracy` in fraud and audit settings, where the positive class is the minority class.
+
+Reading the current results:
+
+- `F1-score = 0.9620` indicates strong balance between precision and recall;
+- `ROC-AUC = 0.9996` shows excellent class separation on this dataset;
+- `PR-AUC = 0.9967` confirms that performance remains very strong when focusing on the minority class;
+- because the dataset is synthetic, these values should be interpreted as controlled-demo performance, not as a production benchmark.
 
 ## Visualization and interpretation
 

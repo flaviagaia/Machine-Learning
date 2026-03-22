@@ -17,7 +17,7 @@ Este projeto foi construído para reproduzir esse fluxo com `scikit-learn`, usan
 
 ### Dados utilizados
 
-O dataset é gerado de forma reproduzível em [src/data.py](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Credit%20Risk%20Scoring/src/data.py) e salvo em [data/credit_risk_dataset.csv](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Credit%20Risk%20Scoring/data/credit_risk_dataset.csv).
+O dataset é gerado de forma reproduzível em [src/data.py](./src/data.py) e salvo em [data/credit_risk_dataset.csv](./data/credit_risk_dataset.csv).
 
 As features simuladas incluem:
 
@@ -53,7 +53,7 @@ Embora o conjunto seja sintético, a lógica de geração foi desenhada para ref
 
 ### Pipeline técnico
 
-O pipeline principal está em [src/train.py](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Credit%20Risk%20Scoring/src/train.py) e a modelagem em [src/modeling.py](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Credit%20Risk%20Scoring/src/modeling.py).
+O pipeline principal está em [src/train.py](./src/train.py) e a modelagem em [src/modeling.py](./src/modeling.py).
 
 Fluxo implementado:
 
@@ -161,11 +161,11 @@ Mostra a capacidade global de separação entre bons e maus clientes ao longo de
 
 ### Artefatos gerados
 
-Ao rodar [main.py](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Credit%20Risk%20Scoring/main.py), o projeto gera:
+Ao rodar [main.py](./main.py), o projeto gera:
 
-- [artifacts/best_credit_risk_model.joblib](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Credit%20Risk%20Scoring/artifacts/best_credit_risk_model.joblib)
-- [artifacts/metrics.json](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Credit%20Risk%20Scoring/artifacts/metrics.json)
-- [artifacts/test_predictions.csv](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Credit%20Risk%20Scoring/artifacts/test_predictions.csv)
+- [artifacts/best_credit_risk_model.joblib](./artifacts/best_credit_risk_model.joblib)
+- [artifacts/metrics.json](./artifacts/metrics.json)
+- [artifacts/test_predictions.csv](./artifacts/test_predictions.csv)
 
 ### Resultado atual
 
@@ -180,7 +180,7 @@ Isso é coerente com um baseline clássico de risco em um conjunto tabular sint�
 ### Como executar
 
 ```bash
-cd "/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Credit Risk Scoring"
+cd "credit-risk-scoring"
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -218,7 +218,7 @@ This project reproduces that workflow with `scikit-learn`, using a synthetic but
 
 ### Data
 
-The dataset is generated reproducibly in [src/data.py](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Credit%20Risk%20Scoring/src/data.py) and saved to [data/credit_risk_dataset.csv](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Credit%20Risk%20Scoring/data/credit_risk_dataset.csv).
+The dataset is generated reproducibly in [src/data.py](./src/data.py) and saved to [data/credit_risk_dataset.csv](./data/credit_risk_dataset.csv).
 
 The simulated features include:
 
@@ -254,7 +254,7 @@ Even though the dataset is synthetic, its generation logic was designed to refle
 
 ### Technical pipeline
 
-The training logic lives in [src/train.py](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Credit%20Risk%20Scoring/src/train.py) and the model definitions in [src/modeling.py](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Credit%20Risk%20Scoring/src/modeling.py).
+The training logic lives in [src/train.py](./src/train.py) and the model definitions in [src/modeling.py](./src/modeling.py).
 
 Implemented flow:
 
@@ -362,11 +362,11 @@ Especially useful under class imbalance because it emphasizes performance on the
 
 ### Generated artifacts
 
-Running [main.py](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Credit%20Risk%20Scoring/main.py) creates:
+Running [main.py](./main.py) creates:
 
-- [artifacts/best_credit_risk_model.joblib](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Credit%20Risk%20Scoring/artifacts/best_credit_risk_model.joblib)
-- [artifacts/metrics.json](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Credit%20Risk%20Scoring/artifacts/metrics.json)
-- [artifacts/test_predictions.csv](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Credit%20Risk%20Scoring/artifacts/test_predictions.csv)
+- [artifacts/best_credit_risk_model.joblib](./artifacts/best_credit_risk_model.joblib)
+- [artifacts/metrics.json](./artifacts/metrics.json)
+- [artifacts/test_predictions.csv](./artifacts/test_predictions.csv)
 
 ### Current result
 
@@ -381,7 +381,7 @@ This is a reasonable outcome for a classical credit-risk baseline over a medium-
 ### Run
 
 ```bash
-cd "/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Credit Risk Scoring"
+cd "credit-risk-scoring"
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt

@@ -71,8 +71,8 @@ def _evaluate_model(model, x_valid: pd.DataFrame, y_valid: pd.Series, model_name
     )
 
 
-def train_and_evaluate(random_state: int = 42) -> dict:
-    dataset = ensure_dataset(path=DATA_PATH, random_state=random_state, refresh=True)
+def train_and_evaluate(random_state: int = 42, refresh_dataset: bool = False) -> dict:
+    dataset = ensure_dataset(path=DATA_PATH, random_state=random_state, refresh=refresh_dataset)
 
     x = dataset.drop(columns=[TARGET_COLUMN])
     y = dataset[TARGET_COLUMN]

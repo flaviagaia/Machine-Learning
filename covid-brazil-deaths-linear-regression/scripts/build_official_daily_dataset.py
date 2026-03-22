@@ -11,6 +11,8 @@ import pandas as pd
 
 
 OUTPUT_PATH = Path(__file__).resolve().parents[1] / "data" / "covid_brazil_daily_deaths_2024.csv"
+YEAR_START = pd.Timestamp("2024-01-01")
+YEAR_END = pd.Timestamp("2024-12-31")
 
 
 def main() -> None:
@@ -37,11 +39,15 @@ def main() -> None:
 
         counter[str(parsed)] += 1
 
-    series = pd.Series(counter, name="covid_deaths").rename_axis("date").sort_index().reset_index()
-    series["date"] = pd.to_datetime(series["date"])
+    if counter:
+        series = pd.Series(counter, name="covid_deaths").rename_axis("date").sort_index().reset_index()
+        series["date"] = pd.to_datetime(series["date"])
+        frame = series.set_index("date")
+    else:
+        frame = pd.DataFrame(columns=["covid_deaths"], index=pd.DatetimeIndex([], name="date"))
 
-    full_range = pd.date_range(series["date"].min(), series["date"].max(), freq="D")
-    frame = series.set_index("date").reindex(full_range, fill_value=0).rename_axis("date").reset_index()
+    full_range = pd.date_range(YEAR_START, YEAR_END, freq="D")
+    frame = frame.reindex(full_range, fill_value=0).rename_axis("date").reset_index()
     frame.columns = ["date", "covid_deaths"]
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)

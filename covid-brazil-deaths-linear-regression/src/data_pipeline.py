@@ -11,6 +11,8 @@ import pandas as pd
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DAILY_DATA_PATH = PROJECT_ROOT / "data" / "covid_brazil_daily_deaths_2024.csv"
 OFFICIAL_SOURCE_URL = "https://s3.sa-east-1.amazonaws.com/ckan.saude.gov.br/SRAG/2024/INFLUD24-26-06-2025.csv"
+YEAR_START = pd.Timestamp("2024-01-01")
+YEAR_END = pd.Timestamp("2024-12-31")
 
 
 def aggregate_daily_deaths_from_srag(raw_csv_path: Path, output_path: Path = DAILY_DATA_PATH) -> pd.DataFrame:
@@ -38,21 +40,20 @@ def aggregate_daily_deaths_from_srag(raw_csv_path: Path, output_path: Path = DAI
 
             death_counter[str(parsed)] += 1
 
-    series = (
-        pd.Series(death_counter, name="covid_deaths")
-        .rename_axis("date")
-        .sort_index()
-        .reset_index()
-    )
-    series["date"] = pd.to_datetime(series["date"])
+    if death_counter:
+        series = (
+            pd.Series(death_counter, name="covid_deaths")
+            .rename_axis("date")
+            .sort_index()
+            .reset_index()
+        )
+        series["date"] = pd.to_datetime(series["date"])
+        frame = series.set_index("date")
+    else:
+        frame = pd.DataFrame(columns=["covid_deaths"], index=pd.DatetimeIndex([], name="date"))
 
-    full_range = pd.date_range(series["date"].min(), series["date"].max(), freq="D")
-    frame = (
-        series.set_index("date")
-        .reindex(full_range, fill_value=0)
-        .rename_axis("date")
-        .reset_index()
-    )
+    full_range = pd.date_range(YEAR_START, YEAR_END, freq="D")
+    frame = frame.reindex(full_range, fill_value=0).rename_axis("date").reset_index()
     frame.columns = ["date", "covid_deaths"]
 
     output_path.parent.mkdir(parents=True, exist_ok=True)

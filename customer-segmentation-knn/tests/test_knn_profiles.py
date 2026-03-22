@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import unittest
 
-from src.knn_profiles import MODEL_PATH, NEIGHBORS_PATH, SUMMARY_PATH, build_profile_engine
+from src.knn_profiles import MODEL_PATH, NEIGHBORS_PATH, PCA_PLOT_PATH, SUMMARY_PATH, build_profile_engine
 
 
 class KNNProfilesTest(unittest.TestCase):
@@ -14,9 +14,11 @@ class KNNProfilesTest(unittest.TestCase):
         self.assertEqual(summary["knn_neighbors"], 5)
         self.assertGreater(summary["silhouette_score"], 0.15)
         self.assertEqual(len(summary["sample_neighbors"]), 5)
+        self.assertEqual(len(summary["pca_explained_variance_ratio"]), 2)
         self.assertTrue(MODEL_PATH.exists())
         self.assertTrue(SUMMARY_PATH.exists())
         self.assertTrue(NEIGHBORS_PATH.exists())
+        self.assertTrue(PCA_PLOT_PATH.exists())
 
         stored_summary = json.loads(SUMMARY_PATH.read_text(encoding="utf-8"))
         self.assertEqual(stored_summary["sample_customer_id"], summary["sample_customer_id"])

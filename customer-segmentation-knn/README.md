@@ -148,6 +148,18 @@ Na execução atual, o projeto mostra:
 
 No exemplo atual, o cliente `C0001`, do grupo `premium_repeaters`, recupera vizinhos do mesmo perfil, o que indica que a estrutura sintética e a normalização estão produzindo uma noção razoável de semelhança.
 
+### Visualização com PCA
+
+Para facilitar a interpretação visual dos perfis, o projeto também projeta os clientes em duas componentes principais com `PCA`.
+
+Essa visualização ajuda a:
+
+- reduzir o espaço de features para duas dimensões;
+- observar separação aproximada entre segmentos;
+- entender se os grupos ocupam regiões parecidas ou distintas no espaço vetorial.
+
+![PCA dos segmentos de clientes](./assets/pca_customer_segments.png)
+
 ### Como executar
 
 ```bash
@@ -318,6 +330,18 @@ In the current run, the project shows:
 - coherent nearest neighbors for the sample customer
 
 In the current example, customer `C0001`, from the `premium_repeaters` group, retrieves neighbors from the same profile, which indicates that the synthetic structure and normalization are producing a reasonable notion of similarity.
+
+### PCA visualization
+
+To make the profile structure easier to inspect, the project also projects customers into two principal components with `PCA`.
+
+This visualization helps:
+
+- reduce the feature space into two dimensions;
+- inspect approximate separation between segments;
+- understand whether customer groups occupy similar or distinct regions in the vector space.
+
+![PCA customer segments](./assets/pca_customer_segments.png)
 
 ### Run
 

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from src.knn_profiles import MODEL_PATH, NEIGHBORS_PATH, SUMMARY_PATH, build_profile_engine
+from src.knn_profiles import MODEL_PATH, NEIGHBORS_PATH, PCA_PLOT_PATH, SUMMARY_PATH, build_profile_engine
 
 
 def main() -> None:
@@ -11,6 +11,7 @@ def main() -> None:
     print(f"Customers: {summary['n_customers']}")
     print(f"Segments: {summary['n_segments']}")
     print(f"Silhouette score: {summary['silhouette_score']:.3f}")
+    print(f"PCA explained variance: {summary['pca_explained_variance_ratio']}")
     print(f"Sample customer: {summary['sample_customer_id']} ({summary['sample_customer_segment']})")
     print("Nearest neighbors:")
     for item in summary["sample_neighbors"]:
@@ -18,6 +19,7 @@ def main() -> None:
     print(f"Model saved to: {MODEL_PATH}")
     print(f"Summary saved to: {SUMMARY_PATH}")
     print(f"Neighbors saved to: {NEIGHBORS_PATH}")
+    print(f"PCA plot saved to: {PCA_PLOT_PATH}")
 
 
 if __name__ == "__main__":

@@ -184,6 +184,15 @@ Este repositório foi criado para armazenar projetos de `machine learning` em um
 - `house-price-regression`
 - `fraud-detection-baseline`
 
+## Projetos atuais
+
+### `credit-risk-scoring`
+
+Projeto de classificação binária para previsão de inadimplência em crédito usando dados tabulares, preprocessamento com `ColumnTransformer`, comparação entre modelos clássicos e ajuste de threshold.
+
+- pasta: [`credit-risk-scoring`](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Machine-Learning/credit-risk-scoring)
+- foco: `credit risk`, classificação tabular, avaliação com `F1-score`, `ROC-AUC` e `PR-AUC`
+
 Cada projeto idealmente terá:
 
 - `README` próprio;
@@ -398,6 +407,15 @@ This repository was created to store `machine learning` projects in an organized
 - `customer-segmentation`
 - `house-price-regression`
 - `fraud-detection-baseline`
+
+## Current projects
+
+### `credit-risk-scoring`
+
+Binary classification project for credit default prediction using tabular data, `ColumnTransformer` preprocessing, comparison of classical models, and threshold tuning.
+
+- folder: [`credit-risk-scoring`](/Users/flaviagaia/Documents/CV_FLAVIA_CODEX/Machine-Learning/credit-risk-scoring)
+- focus: `credit risk`, tabular classification, evaluation with `F1-score`, `ROC-AUC`, and `PR-AUC`
 
 Each project should ideally include:
 

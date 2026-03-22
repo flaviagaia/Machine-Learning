@@ -22,6 +22,10 @@ Leitura prática:
 - a performance alta é coerente com a natureza sintética da base;
 - o case é ótimo para explicar pipeline tabular, `Random Forest` e `feature importance`, mas não deve ser interpretado como benchmark de produção real sem validação adicional.
 
+Resumo visual dos resultados:
+
+![Results summary](./assets/results_summary.png)
+
 ## Fonte pública dos dados
 
 Dataset utilizado:
@@ -231,6 +235,10 @@ Practical reading:
 - the model separates positive and negative transactions extremely well on this dataset;
 - the high performance is consistent with the synthetic nature of the data;
 - the case is excellent for explaining tabular pipelines, `Random Forest`, and `feature importance`, but it should not be treated as a production benchmark without additional validation.
+
+Visual summary of the results:
+
+![Results summary](./assets/results_summary.png)
 
 ## Public data source
 

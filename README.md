@@ -207,6 +207,13 @@ Projeto de regressão linear para modelar a tendência de óbitos por Covid-19 n
 - pasta: [`covid-brazil-deaths-linear-regression`](./covid-brazil-deaths-linear-regression)
 - foco: `Linear Regression`, série temporal, `R²`, dados públicos oficiais e previsão de tendência epidemiológica
 
+### `bank-transaction-audit-random-forest`
+
+Projeto de classificação com `Random Forest` para auditoria de transações bancárias fictícias, usando dataset público sintético, preprocessamento tabular misto e análise de `feature importance`.
+
+- pasta: [`bank-transaction-audit-random-forest`](./bank-transaction-audit-random-forest)
+- foco: `Random Forest`, auditoria e fraude, importância das variáveis e métricas para base desbalanceada
+
 Cada projeto idealmente terá:
 
 - `README` próprio;
@@ -444,6 +451,13 @@ Linear regression project to model the trend of COVID-19 deaths in Brazil using 
 
 - folder: [`covid-brazil-deaths-linear-regression`](./covid-brazil-deaths-linear-regression)
 - focus: `Linear Regression`, time series, `R²`, official public health data, and epidemiological trend forecasting
+
+### `bank-transaction-audit-random-forest`
+
+Classification project with `Random Forest` for fictional banking transaction auditing, using a public synthetic dataset, mixed tabular preprocessing, and `feature importance` analysis.
+
+- folder: [`bank-transaction-audit-random-forest`](./bank-transaction-audit-random-forest)
+- focus: `Random Forest`, audit and fraud workflows, variable importance, and imbalance-aware metrics
 
 Each project should ideally include:
 

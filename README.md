@@ -200,6 +200,13 @@ Projeto baseado em `KNN` para encontrar clientes mais parecidos a partir de perf
 - pasta: [`customer-segmentation-knn`](./customer-segmentation-knn)
 - foco: `KNN`, recuperação de perfis semelhantes, segmentação comportamental e marketing orientado por similaridade
 
+### `covid-brazil-deaths-linear-regression`
+
+Projeto de regressão linear para modelar a tendência de óbitos por Covid-19 no Brasil a partir de dados abertos oficiais do Ministério da Saúde, usando engenharia de lags, média móvel de 7 dias e avaliação com `R²`.
+
+- pasta: [`covid-brazil-deaths-linear-regression`](./covid-brazil-deaths-linear-regression)
+- foco: `Linear Regression`, série temporal, `R²`, dados públicos oficiais e previsão de tendência epidemiológica
+
 Cada projeto idealmente terá:
 
 - `README` próprio;
@@ -430,6 +437,13 @@ Binary classification project for credit default prediction using tabular data, 
 
 - folder: [`customer-segmentation-knn`](./customer-segmentation-knn)
 - focus: `KNN`, similar-profile retrieval, behavioral segmentation, and similarity-driven marketing
+
+### `covid-brazil-deaths-linear-regression`
+
+Linear regression project to model the trend of COVID-19 deaths in Brazil using official Ministry of Health open data, lag engineering, 7-day moving average targets, and `R²` evaluation.
+
+- folder: [`covid-brazil-deaths-linear-regression`](./covid-brazil-deaths-linear-regression)
+- focus: `Linear Regression`, time series, `R²`, official public health data, and epidemiological trend forecasting
 
 Each project should ideally include:
 

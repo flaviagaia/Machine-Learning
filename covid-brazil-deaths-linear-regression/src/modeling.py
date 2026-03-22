@@ -24,6 +24,7 @@ MODEL_PATH = ARTIFACTS_DIR / "linear_regression_covid_deaths.joblib"
 METRICS_PATH = ARTIFACTS_DIR / "metrics.json"
 PREDICTIONS_PATH = ARTIFACTS_DIR / "predictions.csv"
 PLOT_PATH = ARTIFACTS_DIR / "actual_vs_predicted.png"
+HEATMAP_PATH = ARTIFACTS_DIR / "correlation_heatmap.png"
 
 
 def create_features(frame: pd.DataFrame) -> pd.DataFrame:
@@ -112,6 +113,33 @@ def train_linear_regression(test_size: float = 0.2) -> dict:
     plt.savefig(PLOT_PATH, dpi=160)
     plt.close()
 
+    correlation_columns = feature_columns + ["target_deaths_7d_avg"]
+    correlation_matrix = featured[correlation_columns].corr(numeric_only=True)
+    fig, ax = plt.subplots(figsize=(10, 8))
+    image = ax.imshow(correlation_matrix.values, cmap="coolwarm", vmin=-1, vmax=1)
+    ax.set_xticks(range(len(correlation_columns)))
+    ax.set_yticks(range(len(correlation_columns)))
+    ax.set_xticklabels(correlation_columns, rotation=45, ha="right")
+    ax.set_yticklabels(correlation_columns)
+    ax.set_title("Feature correlation heatmap")
+
+    for row_index in range(len(correlation_columns)):
+        for col_index in range(len(correlation_columns)):
+            ax.text(
+                col_index,
+                row_index,
+                f"{correlation_matrix.iloc[row_index, col_index]:.2f}",
+                ha="center",
+                va="center",
+                fontsize=7,
+                color="black",
+            )
+
+    fig.colorbar(image, ax=ax, fraction=0.046, pad=0.04)
+    fig.tight_layout()
+    fig.savefig(HEATMAP_PATH, dpi=160)
+    plt.close(fig)
+
     metrics = {
         "data_path": str(DAILY_DATA_PATH),
         "n_observations": int(len(featured)),
@@ -119,6 +147,7 @@ def train_linear_regression(test_size: float = 0.2) -> dict:
         "test_size": int(len(test)),
         "target_definition": "7-day moving average of daily COVID-19 deaths",
         "feature_columns": feature_columns,
+        "heatmap_path": str(HEATMAP_PATH),
         "r2_score": round(float(r2), 4),
         "mae": round(float(mae), 4),
         "rmse": round(float(rmse), 4),

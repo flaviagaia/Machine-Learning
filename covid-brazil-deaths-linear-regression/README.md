@@ -158,6 +158,10 @@ A comparação entre série real e previsão do modelo está nesta imagem:
 
 ![Actual vs predicted COVID-19 deaths](./assets/actual_vs_predicted.png)
 
+O projeto também gera um heatmap de correlação entre as features e o alvo, o que ajuda a inspecionar dependências lineares e redundâncias entre variáveis temporais:
+
+![Correlation heatmap](./assets/correlation_heatmap.png)
+
 ### Arquitetura do projeto
 
 - [src/data_pipeline.py](./src/data_pipeline.py): leitura e agregação da base oficial
@@ -352,6 +356,10 @@ These results show that linear regression, when combined with lag engineering an
 The comparison between actual and predicted values is shown here:
 
 ![Actual vs predicted COVID-19 deaths](./assets/actual_vs_predicted.png)
+
+The project also generates a correlation heatmap across features and the target, which helps inspect linear dependencies and redundancy among temporal variables:
+
+![Correlation heatmap](./assets/correlation_heatmap.png)
 
 ### Project structure
 

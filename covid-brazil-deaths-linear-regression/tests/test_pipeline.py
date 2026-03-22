@@ -9,7 +9,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.modeling import METRICS_PATH, MODEL_PATH, PLOT_PATH, PREDICTIONS_PATH, train_linear_regression
+from src.modeling import HEATMAP_PATH, METRICS_PATH, MODEL_PATH, PLOT_PATH, PREDICTIONS_PATH, train_linear_regression
 
 
 class CovidDeathsRegressionPipelineTest(unittest.TestCase):
@@ -23,6 +23,7 @@ class CovidDeathsRegressionPipelineTest(unittest.TestCase):
         self.assertTrue(METRICS_PATH.exists())
         self.assertTrue(PREDICTIONS_PATH.exists())
         self.assertTrue(PLOT_PATH.exists())
+        self.assertTrue(HEATMAP_PATH.exists())
 
         stored_metrics = json.loads(METRICS_PATH.read_text(encoding="utf-8"))
         self.assertEqual(stored_metrics["r2_score"], metrics["r2_score"])

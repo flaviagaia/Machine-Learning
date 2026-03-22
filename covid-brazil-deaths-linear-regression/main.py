@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from src.modeling import METRICS_PATH, MODEL_PATH, PLOT_PATH, PREDICTIONS_PATH, train_linear_regression
+from src.modeling import HEATMAP_PATH, METRICS_PATH, MODEL_PATH, PLOT_PATH, PREDICTIONS_PATH, train_linear_regression
 
 
 def main() -> None:
@@ -18,6 +18,7 @@ def main() -> None:
     print(f"Metrics saved to: {METRICS_PATH}")
     print(f"Predictions saved to: {PREDICTIONS_PATH}")
     print(f"Plot saved to: {PLOT_PATH}")
+    print(f"Correlation heatmap saved to: {HEATMAP_PATH}")
 
 
 if __name__ == "__main__":

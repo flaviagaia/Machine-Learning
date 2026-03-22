@@ -2,6 +2,12 @@ from __future__ import annotations
 
 import json
 import unittest
+from pathlib import Path
+import sys
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.train import METRICS_PATH, MODEL_PATH, PREDICTIONS_PATH, train_and_evaluate
 
